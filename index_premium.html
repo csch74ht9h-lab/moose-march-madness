@@ -131,6 +131,50 @@
   font-weight: bold;
   margin-right: 8px;
 }
+  .team-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.team-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.team-name {
+  font-size: 28px;
+}
+
+.logo {
+  width: 36px;
+  height: 36px;
+}
+
+.score {
+  font-size: 36px;
+  color: #ccc;
+}
+
+.leading {
+  color: #ffd700;
+  font-weight: bold;
+}
+
+.winning .team-name {
+  font-weight: bold;
+}
+
+.arrow {
+  color: #ffd700;
+  font-size: 18px;
+}
+
+.arrow-placeholder {
+  width: 14px;
+}
 </style>
 </head>
 
@@ -163,7 +207,28 @@
 <script>
 const API_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard";
 
+function buildTeamRow(team, opponent) {
+  const isWinning = parseInt(team.score) > parseInt(opponent.score);
+  const hasPossession = team.possession === true;
 
+  return `
+    <div class="team-row ${isWinning ? 'winning' : ''}">
+      
+      <div class="team-left">
+        ${hasPossession ? '<span class="arrow">▶</span>' : '<span class="arrow-placeholder"></span>'}
+        
+        <img class="logo" src="https://a.espncdn.com/i/teamlogos/ncaa/500/${team.team.id}.png">
+        
+        <span class="team-name">${team.team.shortDisplayName}</span>
+      </div>
+
+      <div class="score ${isWinning ? 'leading' : ''}">
+        ${team.score}
+      </div>
+
+    </div>
+  `;
+}
 async function fetchScores() {
   try {
     const res = await fetch(API_URL);
@@ -195,6 +260,10 @@ async function fetchScores() {
     ${isLive ? '<span class="live-inline">● LIVE</span>' : ''}
     ${comp.status.type.detail}
   </div>
+
+  ${buildTeamRow(t1, t2)}
+  ${buildTeamRow(t2, t1)}
+`;
 
   <div class="teams">
     <span>${t1.team.shortDisplayName}</span>
