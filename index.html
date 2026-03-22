@@ -4,56 +4,51 @@
 <meta charset="UTF-8">
 <title>Moose Lodge March Madness 2026</title>
 <meta name="viewport" content="width=1080, height=1920">
+
+<!-- Auto refresh every 60 seconds -->
+<meta http-equiv="refresh" content="60">
+
 <style>
   body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #1b1f3b, #2c2f5a);
+    font-family: 'Arial Black', Arial, sans-serif;
+    background: radial-gradient(circle at top, #2c2f5a, #0f1226);
     color: white;
   }
 
   .container {
     width: 1080px;
     height: 1920px;
-    display: grid;
-    grid-template-rows: 180px 1fr 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
+  /* HEADER */
   .header {
     text-align: center;
-    font-size: 60px;
-    font-weight: bold;
-    padding: 20px;
+    padding: 30px 20px 10px 20px;
   }
 
-  .subheader {
-    font-size: 28px;
+  .title {
+    font-size: 64px;
+    letter-spacing: 2px;
+  }
+
+  .subtitle {
+    font-size: 30px;
     color: #ffd700;
+    margin-top: 10px;
   }
 
-  .main {
-    display: grid;
-    grid-template-rows: 260px 1fr 260px;
-    gap: 20px;
-    padding: 20px;
-  }
-
-  .panel {
-    background: rgba(0,0,0,0.35);
-    border-radius: 16px;
-    padding: 20px;
-    font-size: 28px;
-  }
-
-  .panel h2 {
-    color: #ffd700;
-    margin-bottom: 10px;
-  }
-
-  .feed {
-    background: black;
-    border-radius: 16px;
+  /* LIVE SCORE AREA */
+  .live-container {
+    flex: 1;
+    margin: 20px;
+    border-radius: 20px;
     overflow: hidden;
+    background: black;
+    box-shadow: 0 0 30px rgba(0,0,0,0.6);
   }
 
   iframe {
@@ -62,10 +57,32 @@
     border: none;
   }
 
+  /* PANELS */
+  .panel {
+    margin: 20px;
+    padding: 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 16px;
+    font-size: 28px;
+  }
+
+  .panel h2 {
+    color: #ffd700;
+    margin-bottom: 10px;
+    font-size: 34px;
+  }
+
+  /* FOOTER */
   .footer {
     text-align: center;
     font-size: 28px;
     padding: 20px;
+    background: rgba(0,0,0,0.4);
+  }
+
+  .highlight {
+    color: #ffd700;
+    font-weight: bold;
   }
 </style>
 </head>
@@ -75,46 +92,36 @@
 
   <!-- HEADER -->
   <div class="header">
-    SOUTH LYON MOOSE LODGE<br>
-    <span class="subheader">MARCH MADNESS 2026 • LIVE</span>
+    <div class="title">MOOSE LODGE</div>
+    <div class="subtitle">MARCH MADNESS 2026 • LIVE</div>
   </div>
 
-  <!-- MAIN CONTENT -->
-  <div class="main">
+  <!-- INFO PANEL -->
+  <div class="panel">
+    <h2>WATCH EVERY GAME HERE</h2>
+    • Wall-to-Wall TVs<br>
+    • Featured Games with Sound<br>
+    • Full Tournament Coverage
+  </div>
 
-    <!-- LEFT PANEL -->
-    <div class="panel">
-      <h2>WATCH HERE</h2>
-      <p>• Wall-to-Wall TVs</p>
-      <p>• Featured Games with Sound</p>
-      <p>• Never Miss a Buzzer Beater</p>
-    </div>
+  <!-- LIVE SCOREBOARD -->
+  <div class="live-container">
+    <!-- Use ESPN direct page (works better in signage browser mode) -->
+    <iframe src="https://www.espn.com/mens-college-basketball/scoreboard"></iframe>
+  </div>
 
-    <!-- LIVE SCORES FEED -->
-    <div class="feed">
-      <!-- OPTION 1: ESPN SCOREBOARD -->
-      <div style="color:white; font-size:40px; text-align:center; padding-top:200px;">
-LIVE SCORES WILL APPEAR HERE
-</div>
-
-      <!-- OPTION 2 (swap if needed):
-      <iframe src="https://www.ncaa.com/march-madness-live"></iframe>
-      -->
-    </div>
-
-    <!-- RIGHT PANEL -->
-    <div class="panel">
-      <h2>GAME DAY SPECIALS</h2>
-      <p>• Wings & Pitchers</p>
-      <p>• Burgers & Fries</p>
-      <p>• Ice Cold Beer</p>
-    </div>
-
+  <!-- SPECIALS -->
+  <div class="panel">
+    <h2>GAME DAY SPECIALS</h2>
+    • Wings & Pitchers<br>
+    • Burgers & Fries<br>
+    • Ice Cold Beer
   </div>
 
   <!-- FOOTER -->
   <div class="footer">
-    SWEET 16 • ELITE 8 • FINAL FOUR • CHAMPIONSHIP APRIL 6<br>
+    <span class="highlight">SWEET 16 • ELITE 8 • FINAL FOUR</span><br>
+    CHAMPIONSHIP APRIL 6<br><br>
     JOIN THE MADNESS AT THE MOOSE LODGE
   </div>
 
