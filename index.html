@@ -24,55 +24,27 @@
   /* HEADER */
   .header {
     background: linear-gradient(90deg, #2c2f5a, #3d2f6b);
-    padding: 25px;
+    padding: 30px 20px;
     text-align: center;
     border-bottom: 4px solid #ffd700;
   }
 
-  .logo {
-    height: 90px;
-    margin-bottom: 10px;
-  }
-
   .title {
-    font-size: 58px;
+    font-size: 56px;
     font-weight: bold;
     letter-spacing: 2px;
   }
 
   .subtitle {
-    font-size: 28px;
-    color: #ffd700;
-    margin-top: 5px;
-  }
-
-  /* SECTION CARDS */
-  .card {
-    margin: 18px;
-    padding: 22px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-  }
-
-  .card h2 {
-    margin: 0 0 12px 0;
-    font-size: 32px;
-    color: #ffd700;
-    border-bottom: 2px solid rgba(255,215,0,0.3);
-    padding-bottom: 8px;
-  }
-
-  .card p {
     font-size: 26px;
-    line-height: 1.4;
-    margin: 6px 0;
+    color: #ffd700;
+    margin-top: 8px;
   }
 
   /* LIVE FEED */
   .live {
     flex: 1;
-    margin: 0 18px;
+    margin: 20px;
     border-radius: 20px;
     overflow: hidden;
     background: black;
@@ -109,42 +81,22 @@
 <body>
 <div class="container">
 
-  <!-- HEADER WITH LOGO -->
+  <!-- HEADER -->
   <div class="header">
-    <!-- 🔁 REPLACE THIS URL WITH YOUR ACTUAL MOOSE LOGO IF YOU HAVE ONE -->
-    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Loyal_Order_of_Moose_logo.png/320px-Loyal_Order_of_Moose_logo.png">
-    
     <div class="title">SOUTH LYON MOOSE LODGE</div>
-    <div class="subtitle">MARCH MADNESS 2026 • LIVE TOURNAMENT</div>
+    <div class="subtitle">MARCH MADNESS 2026 • LIVE SCORES</div>
   </div>
 
-  <!-- WATCH INFO -->
-  <div class="card">
-    <h2>WATCH EVERY GAME HERE</h2>
-    <p>• Wall-to-Wall TVs</p>
-    <p>• Featured Games with Sound</p>
-    <p>• Full Tournament Coverage</p>
-  </div>
-
-  <!-- LIVE SCORES -->
+  <!-- LIVE SCOREBOARD -->
   <div class="live">
     <iframe src="https://www.espn.com/mens-college-basketball/scoreboard"></iframe>
-  </div>
-
-  <!-- SPECIALS -->
-  <div class="card">
-    <h2>GAME DAY SPECIALS</h2>
-    <p>• Wings & Pitchers</p>
-    <p>• Burgers & Fries</p>
-    <p>• Ice Cold Beer</p>
   </div>
 
   <!-- FOOTER -->
   <div class="footer">
     <div class="footer-text">
       <span class="highlight">SWEET 16 • ELITE 8 • FINAL FOUR</span><br>
-      CHAMPIONSHIP APRIL 6<br><br>
-      JOIN THE MADNESS AT THE MOOSE LODGE
+      CHAMPIONSHIP APRIL 6
     </div>
   </div>
 
