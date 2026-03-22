@@ -4,15 +4,13 @@
 <meta charset="UTF-8">
 <title>Moose Lodge March Madness 2026</title>
 <meta name="viewport" content="width=1080, height=1920">
-
-<!-- Auto refresh every 60 seconds -->
 <meta http-equiv="refresh" content="60">
 
 <style>
   body {
     margin: 0;
-    font-family: 'Arial Black', Arial, sans-serif;
-    background: radial-gradient(circle at top, #2c2f5a, #0f1226);
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(180deg, #1a1c3a, #0b0d1f);
     color: white;
   }
 
@@ -21,34 +19,65 @@
     height: 1920px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
   }
 
   /* HEADER */
   .header {
+    background: linear-gradient(90deg, #2c2f5a, #3d2f6b);
+    padding: 25px;
     text-align: center;
-    padding: 30px 20px 10px 20px;
+    border-bottom: 4px solid #ffd700;
+  }
+
+  .logo {
+    height: 90px;
+    margin-bottom: 10px;
   }
 
   .title {
-    font-size: 64px;
+    font-size: 58px;
+    font-weight: bold;
     letter-spacing: 2px;
   }
 
   .subtitle {
-    font-size: 30px;
+    font-size: 28px;
     color: #ffd700;
-    margin-top: 10px;
+    margin-top: 5px;
   }
 
-  /* LIVE SCORE AREA */
-  .live-container {
+  /* SECTION CARDS */
+  .card {
+    margin: 18px;
+    padding: 22px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  }
+
+  .card h2 {
+    margin: 0 0 12px 0;
+    font-size: 32px;
+    color: #ffd700;
+    border-bottom: 2px solid rgba(255,215,0,0.3);
+    padding-bottom: 8px;
+  }
+
+  .card p {
+    font-size: 26px;
+    line-height: 1.4;
+    margin: 6px 0;
+  }
+
+  /* LIVE FEED */
+  .live {
     flex: 1;
-    margin: 20px;
+    margin: 0 18px;
     border-radius: 20px;
     overflow: hidden;
     background: black;
-    box-shadow: 0 0 30px rgba(0,0,0,0.6);
+    box-shadow: 0 0 35px rgba(0,0,0,0.6);
+    border: 3px solid rgba(255,215,0,0.3);
   }
 
   iframe {
@@ -57,27 +86,17 @@
     border: none;
   }
 
-  /* PANELS */
-  .panel {
-    margin: 20px;
-    padding: 20px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 16px;
-    font-size: 28px;
-  }
-
-  .panel h2 {
-    color: #ffd700;
-    margin-bottom: 10px;
-    font-size: 34px;
-  }
-
   /* FOOTER */
   .footer {
-    text-align: center;
-    font-size: 28px;
+    background: linear-gradient(90deg, #2c2f5a, #3d2f6b);
     padding: 20px;
-    background: rgba(0,0,0,0.4);
+    text-align: center;
+    border-top: 4px solid #ffd700;
+  }
+
+  .footer-text {
+    font-size: 26px;
+    line-height: 1.4;
   }
 
   .highlight {
@@ -90,39 +109,43 @@
 <body>
 <div class="container">
 
-  <!-- HEADER -->
+  <!-- HEADER WITH LOGO -->
   <div class="header">
-    <div class="title">MOOSE LODGE</div>
-    <div class="subtitle">MARCH MADNESS 2026 • LIVE</div>
+    <!-- 🔁 REPLACE THIS URL WITH YOUR ACTUAL MOOSE LOGO IF YOU HAVE ONE -->
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Loyal_Order_of_Moose_logo.png/320px-Loyal_Order_of_Moose_logo.png">
+    
+    <div class="title">SOUTH LYON MOOSE LODGE</div>
+    <div class="subtitle">MARCH MADNESS 2026 • LIVE TOURNAMENT</div>
   </div>
 
-  <!-- INFO PANEL -->
-  <div class="panel">
+  <!-- WATCH INFO -->
+  <div class="card">
     <h2>WATCH EVERY GAME HERE</h2>
-    • Wall-to-Wall TVs<br>
-    • Featured Games with Sound<br>
-    • Full Tournament Coverage
+    <p>• Wall-to-Wall TVs</p>
+    <p>• Featured Games with Sound</p>
+    <p>• Full Tournament Coverage</p>
   </div>
 
-  <!-- LIVE SCOREBOARD -->
-  <div class="live-container">
-    <!-- Use ESPN direct page (works better in signage browser mode) -->
+  <!-- LIVE SCORES -->
+  <div class="live">
     <iframe src="https://www.espn.com/mens-college-basketball/scoreboard"></iframe>
   </div>
 
   <!-- SPECIALS -->
-  <div class="panel">
+  <div class="card">
     <h2>GAME DAY SPECIALS</h2>
-    • Wings & Pitchers<br>
-    • Burgers & Fries<br>
-    • Ice Cold Beer
+    <p>• Wings & Pitchers</p>
+    <p>• Burgers & Fries</p>
+    <p>• Ice Cold Beer</p>
   </div>
 
   <!-- FOOTER -->
   <div class="footer">
-    <span class="highlight">SWEET 16 • ELITE 8 • FINAL FOUR</span><br>
-    CHAMPIONSHIP APRIL 6<br><br>
-    JOIN THE MADNESS AT THE MOOSE LODGE
+    <div class="footer-text">
+      <span class="highlight">SWEET 16 • ELITE 8 • FINAL FOUR</span><br>
+      CHAMPIONSHIP APRIL 6<br><br>
+      JOIN THE MADNESS AT THE MOOSE LODGE
+    </div>
   </div>
 
 </div>
