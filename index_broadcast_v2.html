@@ -173,14 +173,29 @@ async function load() {
 }
 
 function renderFeatured(event) {
+  if (!event || !event.competitions) {
+    document.getElementById("featured").innerHTML = "";
+    return;
+  }
+
   const comp = event.competitions[0];
   const t1 = comp.competitors[0];
   const t2 = comp.competitors[1];
 
   document.getElementById("featured").innerHTML = `
-    <div class="status">${comp.status.type.detail}</div>
-    <div class="team">${t1.team.shortDisplayName} <span class="score">${t1.score}</span></div>
-    <div class="team">${t2.team.shortDisplayName} <span class="score">${t2.score}</span></div>
+    <div class="status-top">
+      ${comp.status.type.detail}
+    </div>
+
+    <div class="team-row">
+      <span>${t1.team.shortDisplayName}</span>
+      <span class="score">${t1.score}</span>
+    </div>
+
+    <div class="team-row">
+      <span>${t2.team.shortDisplayName}</span>
+      <span class="score">${t2.score}</span>
+    </div>
   `;
 }
 
