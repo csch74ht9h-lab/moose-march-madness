@@ -56,7 +56,7 @@ body {
 /* GAME LIST */
 .games {
   flex: 1;
-  padding: 10px 20px;
+  padding: 10px 25px; /* MORE SIDE SPACE */
 }
 
 .game {
@@ -72,14 +72,18 @@ body {
 
 .team-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
 }
 
 .team-left {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  flex: 1;              /* TAKE AVAILABLE SPACE */
+  min-width: 0;         /* CRITICAL FOR TEXT TRUNCATION */
 }
 
 .logo {
@@ -121,6 +125,19 @@ body {
 
 @keyframes scroll {
   100% { transform: translateX(-100%); }
+}
+.team-name {
+  font-size: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.score {
+  font-size: 30px;
+  color: #ccc;
+  min-width: 70px;     /* forces space for score */
+  text-align: right;
+  flex-shrink: 0;      /* prevents shrinking */
 }
 </style>
 </head>
