@@ -109,23 +109,6 @@ body {
   100% { background: transparent; }
 }
 
-/* TICKER */
-.ticker {
-  height: 70px;
-  background: black;
-  overflow: hidden;
-  border-top: 3px solid #ffd700;
-}
-
-.ticker-text {
-  white-space: nowrap;
-  animation: scroll 25s linear infinite;
-  padding-left: 100%;
-}
-
-@keyframes scroll {
-  100% { transform: translateX(-100%); }
-}
 .team-name {
   font-size: 24px;
   white-space: nowrap;
@@ -150,10 +133,6 @@ body {
 <div class="featured" id="featured"></div>
 
 <div class="games" id="games"></div>
-
-<div class="ticker">
-  <div class="ticker-text" id="ticker"></div>
-</div>
 
 </div>
 
@@ -244,18 +223,6 @@ function renderGames(events) {
   });
 }
 
-function buildTicker(events) {
-  let text = "🏀 ";
-  events.forEach(e=>{
-    const c = e.competitions[0];
-    const t1 = c.competitors[0];
-    const t2 = c.competitors[1];
-
-    text += `${t1.team.abbreviation} ${t1.score}-${t2.score} ${t2.team.abbreviation} • `;
-  });
-
-  document.getElementById("ticker").innerText = text;
-}
 
 load();
 setInterval(load, 60000);
