@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Moose Lodge March Madness Live</title>
+<meta name="viewport" content="width=720, height=1280">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0a0c1a;
+  color: white;
+}
+
+/* SCREEN LOCK */
+.container {
+  width: 720px;
+  height: 1280px;
+  display: grid;
+  grid-template-rows: 60px 140px 1fr;
+  overflow: hidden;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  background: #11142b;
+  border-bottom: 2px solid #ffd700;
+}
+
+/* FEATURED */
+.featured {
+  padding: 8px;
+  background: linear-gradient(135deg, #1b1f3b, #11142b);
+  border-bottom: 2px solid #ffd700;
+}
+
+.featured .status {
+  font-size: 14px;
+}
+
+.featured .team {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.featured .score {
+  font-size: 26px;
+  color: #ffd700;
+}
+
+/* GAMES */
+.games {
+  display: grid;
+  grid-auto-rows: 1fr;
+  gap: 6px;
+  padding: 8px 12px;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #1a1c3a;
+  border-radius: 8px;
+  padding: 6px;
+}
+
+/* TEAM ROW */
+.team-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.team-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.team-name {
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logo {
+  width: 18px;
+  height: 18px;
+}
+
+.score {
+  font-size: 20px;
+  min-width: 40px;
+  text-align: right;
+}
+
+.leading {
+  color: #ffd700;
+  font-weight: bold;
+}
+
+.arrow {
+  color: #ffd700;
+  font-size: 12px;
+}
+
+/* STATUS */
+.status-top {
+  font-size: 13px;
+}
+
+.live-inline {
+  color: red;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+  MOOSE LODGE • MARCH MADNESS LIVE
+</div>
+
+<div class="featured" id="featured">Loading...</div>
+
+<div class="games" id="games">Loading games...</div>
+
+</div>
+
+<script>
+const API = "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard";
+
+function buildTeamRow(team, opponent) {
+  const isWinning = parseInt(team.score) > parseInt(opponent.score);
+  const hasPossession = team.possession === true;
+
+  return `
+    <div class="team-row">
+      <div class="team-left">
+        ${hasPossession ? '<span class="arrow">▶</span>' : ''}
+        <img class="logo" src="https://a.espncdn.com/i/teamlogos/ncaa/500/${team.team.id}.png">
+        <span class="team-name ${isWinning ? 'leading' : ''}">
+          ${team.team.shortDisplayName}
+        </span>
+      </div>
+      <div class="score ${isWinning ? 'leading' : ''}">
+        ${team.score}
+      </div>
+    </div>
+  `;
+}
+
+function renderFeatured(event) {
+  if (!event) return;
+
+  const comp = event.competitions[0];
+  const t1 = comp.competitors[0];
+  const t2 = comp.competitors[1];
+
+  document.getElementById("featured").innerHTML = `
+    <div class="status">${comp.status.type.detail}</div>
+    <div class="team">${t1.team.shortDisplayName} <span class="score">${t1.score}</span></div>
+    <div class="team">${t2.team.shortDisplayName} <span class="score">${t2.score}</span></div>
+  `;
+}
+
+function renderGames(events) {
+  const container = document.getElementById("games");
+  container.innerHTML = "";
+
+  events.forEach(e => {
+    const comp = e.competitions[0];
+    const t1 = comp.competitors[0];
+    const t2 = comp.competitors[1];
+
+    const isLive = comp.status.type.state === "in";
+
+    const div = document.createElement("div");
+    div.className = "game";
+
+    div.innerHTML = `
+      <div class="status-top">
+        ${isLive ? '<span class="live-inline">● LIVE</span>' : ''}
+        ${comp.status.type.detail}
+      </div>
+      ${buildTeamRow(t1, t2)}
+      ${buildTeamRow(t2, t1)}
+    `;
+
+    container.appendChild(div);
+  });
+}
+
+async function load() {
+  try {
+    const res = await fetch(API);
+    const data = await res.json();
+
+    const events = data.events || [];
+
+    events.sort((a,b)=>{
+      const order = {in:0, pre:1, post:2};
+      return order[a.status.type.state] - order[b.status.type.state];
+    });
+
+    renderFeatured(events[0]);
+    renderGames(events.slice(1,5)); /* fewer games for 720p */
+
+  } catch {
+    document.getElementById("games").innerHTML = "Error loading scores";
+  }
+}
+
+load();
+setInterval(load, 60000);
+</script>
+
+</body>
+</html>
